@@ -1,0 +1,15 @@
+C:\Users\huber\Desktop\lunar\LC\bin\Debug\net7.0\LC.exe
+C:\Users\huber\Desktop\lunar\LC\bin\Debug\net7.0\LC.deps.json
+C:\Users\huber\Desktop\lunar\LC\bin\Debug\net7.0\LC.runtimeconfig.json
+C:\Users\huber\Desktop\lunar\LC\bin\Debug\net7.0\LC.dll
+C:\Users\huber\Desktop\lunar\LC\bin\Debug\net7.0\LC.pdb
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.csproj.AssemblyReference.cache
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.AssemblyInfoInputs.cache
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.AssemblyInfo.cs
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.csproj.CoreCompileInputs.cache
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.dll
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\refint\LC.dll
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.pdb
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\LC.genruntimeconfig.cache
+C:\Users\huber\Desktop\lunar\LC\obj\Debug\net7.0\ref\LC.dll
