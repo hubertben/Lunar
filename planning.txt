@@ -1,0 +1,79 @@
+This .txt file is some of the initial planning ideas and thoughts before the coding starts.
+
+What is Lunar?
+
+- Lunar will be a custom programming language (more specifically, the compiler for sed language), which will feature an environment in which the end user would be able to program start-to-finish a genetic algorithm and be able to extract valuable data from a simulation of the genetic algorithm.
+- Lunar files will have the ".moon" extension. This will allow the compiler to do syntax highlighting and other neat features once we build the .NET app.
+- The general structure of the compiler will come from resources online, some are listed below:
+
+* https://www.youtube.com/live/wgHIkdUQbp0
+
+
+Structure of the language:
+
+Like Lua's LOVE2D environment, Lunar will have 1 initial file needed to run the program; main.moon
+- main.moon will be were the environment is set up and ran
+- If the file trying to be run is not main.moon, the program will not work
+
+Below is a first round sample of what a .moon file may look like:
+
+
+
+! "functions.moon" = f
+! "unit.moon" = U
+
+func init(){
+    
+    @units => use U;
+
+    @params = {
+        layout = grid,                       // grid vs. free
+        population_size = 100,
+        mutation_rate = .1,                 // mutations 1/10 crossover interactions
+        selection_percent = .5,             // chooses the top (population * x) percent of the population to be used for breeding. If this is a number above 1, use that number of units.
+        parent_count = 2,                   // number of parents per cross event (by default this is 2)
+        cross_type = even,                  // types
+                                                - even:     (100 / parent_count)% chance for each parent to contribute its gener
+                                                - avg:      Averages parent A and parent B gene (parent_count = 2)
+                                                - max/min:  Max or Min of parent A gene and parent B gene (parent_count = 2)
+        fitness_type = global,              // unique vs. global where each unit gets its own fitness function vs each unit uses 1 central fitness functions
+        brain_type = network                // network vs. linear
+    }
+}
+
+// The start function is run after the init function completes
+func start(){
+    @rounds = 50;
+    simulate;
+}
+
+// The stop function is run after the start function completes
+func stop(){
+    displayGraph(fitness)
+}
+
+
+Steps of a Genetic Algorithm:
+
+
+Initialize the Population
+
+|
+V
+
+Evaluate fitness    < ----------+
+                                |
+|                               |
+V                               |
+                                |
+Selection of Top units          |
+                                |
+|                               |
+V                               |
+                                |
+Breeding                        |
+                                |
+|                               |
+V                               |
+                                |
+Obtain New Population   > ------+
