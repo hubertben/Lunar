@@ -1,5 +1,6 @@
 ﻿
 using System;
+using _GeneticAlgorithm;
 
 namespace LC
 {
@@ -7,7 +8,13 @@ namespace LC
     {
         static void Main(string[] args)
         {
-            keyboardInput();
+            Console.WriteLine("");
+            var GA = new GeneticAlgorithm(1000);
+            GA.getUnit(0).displayGenome();
+            GA.getUnit(0).mutate();
+            GA.getUnit(0).displayGenome();
+
+            // keyboardInput();
         }
 
         static void keyboardInput()
@@ -15,15 +22,15 @@ namespace LC
             while (true)
             {
 
-                var key = Console.ReadLine();
+                var line = Console.ReadLine();
 
-                if (key == "exit")
+                if (line == "exit")
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine(key);
+                    Console.WriteLine(">>> " + line);
                 }
 
             }
