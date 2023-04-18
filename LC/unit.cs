@@ -18,11 +18,25 @@ namespace _Unit {
             }
         }
 
+        public string __repr__(int round_to = 2) {
+            float rounded2Fitness = Functions.round(this.fitness, round_to);
+            string r2F = rounded2Fitness.ToString();
+            string space = "";
+            for (int i = 0; i < ((5 + round_to) - r2F.Length); i++) {
+                space += " ";
+            }
+
+            return "Unit:"+ space + (rounded2Fitness);
+        }
+
         public void setFitness(float fitness) {
             this.fitness = fitness;
         }
 
-        public float getFitness() {
+        public float getFitness(bool regenerate = false) {
+            if (regenerate && this.fitness != -1) {
+                this.fitness = this._fitness();
+            }
             return this.fitness;
         }
 
@@ -73,6 +87,14 @@ namespace _Unit {
             return child;
         }
 
+        public float _fitness(){
+            float sum = 0;
+            for (int i = 0; i < this.genome.Length; i++) {
+                sum += this.genome[i];
+            }
+            return Functions.map(sum, 0, this.genome.Length, 0, 1);
+        }
+
         public void displayGenome() {
             System.Console.Write("[");
             for (int i = 0; i < this.genome.Length - 1; i++) {
@@ -80,6 +102,8 @@ namespace _Unit {
             }
             System.Console.WriteLine(this.genome[this.genome.Length - 1] + "]");
         }
+
+
     }
 
 }
