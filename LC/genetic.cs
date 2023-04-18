@@ -9,7 +9,7 @@ namespace _GeneticAlgorithm {
         private Unit[] population;
         private int generation = 0;
         private int rounds = 500;
-        private float mutation_rate = 0.001f;
+        private float mutation_rate = 0.5f;
 
 
         public GeneticAlgorithm(int population_size, bool init = true) {

@@ -1,5 +1,4 @@
 ﻿
-using System;
 using _GeneticAlgorithm;
 
 namespace LC
@@ -9,11 +8,13 @@ namespace LC
         static void Main(string[] args)
         {
             Console.WriteLine("");
-            var GA = new GeneticAlgorithm(1000);
+            var GA = new GeneticAlgorithm(2);
             GA.getUnit(0).displayGenome();
-            GA.getUnit(0).mutate();
-            GA.getUnit(0).displayGenome();
+            GA.getUnit(1).displayGenome();
 
+            var child = GA.getUnit(0).cross(GA.getUnit(1), "min");
+            child.displayGenome();
+            
             // keyboardInput();
         }
 

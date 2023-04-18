@@ -44,8 +44,33 @@ namespace _Unit {
             for (int i = 0; i < this.genome.Length; i++) {
                 if (this.mutation_rate > Functions.randomFloat(0, 1)) {
                     this.genome[i] += Functions.randomFloat(-1, 1);
+                    this.genome[i] = Functions.map(this.genome[i], -2, 2, -1, 1);
                 }
             }
+        }
+
+        public Unit cross(Unit other, string _type = "rand"){
+            Unit child = new Unit(this.genome.Length, this.mutation_rate, false);
+            for (int i = 0; i < this.genome.Length; i++) {
+                float A = this.genome[i];
+                float B = other.getGenome()[i];
+
+                switch (_type) {
+                    case "rand":
+                        child.getGenome()[i] = Functions.randomFloat(0, 1) > 0.5f ? A : B;
+                        break;
+                    case "avg":
+                        child.getGenome()[i] = (A + B) / 2;
+                        break;
+                    case "min":
+                        child.getGenome()[i] = A < B ? A : B;
+                        break;
+                    case "max":
+                        child.getGenome()[i] = A > B ? A : B;
+                        break;
+                }
+            }
+            return child;
         }
 
         public void displayGenome() {
