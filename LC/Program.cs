@@ -11,41 +11,27 @@ namespace LC
         static void Main(string[] args)
         {
 
-            string allowedChars = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string sampleTarget = "HELLO WORLD MY NAME IS BEN";
-            float[] linkerTarget = new float[sampleTarget.Length];
+            string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .,-+=_!@#$%^&*()";
+            Dictionary<string, float> mapping = Functions.mapCharsetNormal(allowedChars);
 
-            for (int i = 0; i < sampleTarget.Length; i++)
-            {
-                linkerTarget[i] = (float)(((int) sampleTarget[i]) - 65);
-            }
-
-            linkerTarget = Functions.mapList(linkerTarget);
-
+            string sampleTarget = "DONT CAPITALIZE WHOLE PARAGRAPHS. THIS HABIT ORIGINATED WITH LAWYERS AND HAS INFECTED SOCIETY AT LARGE. MANY WRITERS SEEM TO THINK";
+            float[] linkerTarget = Functions.applyMappingToString(mapping, sampleTarget);
+           
             Dictionary<string, Object> linkerData = new Dictionary<string, Object>();
             linkerData.Add("target", linkerTarget);
             linkerData.Add("allowedChars", allowedChars);
-
-            Functions.displayList(linkerTarget);
+            linkerData.Add("mapping", mapping);
 
             int genome_length = linkerTarget.Length;
-            int population_size = 1000;
-            int rounds = 500;
+            int population_size = 1250;
+            int rounds = 2000;
             int selection_size = 100;
-            bool verbose = false;
+            bool verbose = true;
 
             Linker L = new Linker(linkerData);
-
-            Console.WriteLine("//////////////////////////////////////////");
             
             GeneticAlgorithm GA = new GeneticAlgorithm(L, population_size, genome_length);
             GA.simulate(rounds, selection_size, verbose);
-            
-            float[] bestGenome = GA.maxFitness().getGenome();
-
-            Functions.displayFloatListToAllowedChars(allowedChars, bestGenome);
-
-
             
         }
 

@@ -8,8 +8,10 @@ namespace _Linker {
         private float[] target;
         private int targetLength;
         private string allowedChars;
+        private Dictionary<string, float> mapping = new Dictionary<string, float>();
 
         public Linker(Dictionary<string, object> linkerData) {
+            
             this.target = (float[]) linkerData["target"];
             this.allowedChars = (string) linkerData["allowedChars"];
 
@@ -23,12 +25,17 @@ namespace _Linker {
                 this.targetLength = this.target.Length;
             }
 
+            if (linkerData.ContainsKey("allowedChars")) {
+                this.allowedChars = (string) linkerData["allowedChars"];
+            }
+
+            if (linkerData.ContainsKey("mapping")) {
+                this.mapping = (Dictionary<string, float>) linkerData["mapping"];
+            }
+
         }
 
-        public float[] normalizedTarget(){
-            return Functions.mapList(this.target);
-        }
-
+    
         public float linkFitness(float[] genome){
         
             //////////////////////////////////////////////////////////////////////////////
@@ -37,8 +44,7 @@ namespace _Linker {
 
             //////////////////////////////////////////////////////////////////////////////
 
-            float[] tempTarget = this.normalizedTarget();
-            return 1 - Functions.sumList(Functions.distListList(genome, tempTarget));
+            return 1 - Functions.sumList(Functions.distListList(genome, this.target));
         }
 
         public void setTarget(float[] target) {
@@ -47,6 +53,10 @@ namespace _Linker {
 
         public float[] getTarget() {
             return this.target;
+        }
+
+        public Dictionary<string, float> getMapping() {
+            return this.mapping;
         }
 
         public void displayLinkerTarget() {

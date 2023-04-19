@@ -100,6 +100,24 @@ namespace _Functions {
             System.Console.WriteLine("[" + target + "]");
         }
 
+        public static void displayListInt(int[] list){
+            string target = "";
+            for (int i = 0; i < list.Length - 1; i++) {
+                target += list[i] + ", ";
+            }
+
+            target += list[list.Length - 1];
+            System.Console.WriteLine("[" + target + "]");
+        }
+
+        public static void displayDict(Dictionary<string, float> dict){
+            string target = "";
+            foreach (KeyValuePair<string, float> item in dict) {
+                target += item.Key + ": " + item.Value + ", ";
+            }
+            System.Console.WriteLine("{" + target + "}");
+        }
+
         public static float trunc(float x, int digits = 0){
             return (float)Math.Truncate(x * (float)Math.Pow(10, digits)) / (float)Math.Pow(10, digits);
         }
@@ -143,44 +161,42 @@ namespace _Functions {
             return normalized;
         }
 
-        public static int[] stringToIntList(string s){
-            int[] list = new int[s.Length];
+        public static Dictionary<string, float> mapCharset(string charset){
+            Dictionary<string, float> map = new Dictionary<string, float>();
+            for (int i = 0; i < charset.Length; i++) {
+                map.Add(charset[i].ToString(), i);
+            }
+            return map;
+        }
+
+        public static Dictionary<string, float> mapCharsetNormal(string charset){
+            Dictionary<string, float> map = new Dictionary<string, float>();
+            for (int i = 0; i < charset.Length; i++) {
+                map.Add(charset[i].ToString(), Functions.map(i, 0, charset.Length, -1, 1));
+            }
+            return map;
+        }
+
+        public static float[] applyMappingToString(Dictionary<string, float> mapping, string s){
+            float[] mapped = new float[s.Length];
             for (int i = 0; i < s.Length; i++) {
-                list[i] = (int)Char.GetNumericValue(s[i]);
+                mapped[i] = mapping[s[i].ToString()];
             }
-            return list;
+            return mapped;
         }
 
-        public static int getAscii(char c){
-            return ((int)c) - 65;
+        public static string closestFloatToMapping(float x, Dictionary<string, float> mapping){
+            float[] distances = distListFloat(mapping.Values.ToArray(), x);
+            return mapping.Keys.ToArray()[Array.IndexOf(distances, distances.Min())];
         }
 
-        public static void displayFloatListToAllowedChars(string allowedChars, float[] target){
-            
-            float[] targetLetters = new float[allowedChars.Length];
-            for (int i = 0; i < allowedChars.Length; i++)
-            {
-                targetLetters[i] = (float)Functions.getAscii(allowedChars[i]);
+        public static string closestFloatListToMapping(float[] list, Dictionary<string, float> mapping){
+            string target = "";
+            for (int i = 0; i < list.Length; i++) {
+                target += closestFloatToMapping(list[i], mapping);
             }
-
-            targetLetters = Functions.mapList(targetLetters);
-
-            Dictionary<float, char> dict = new Dictionary<float, char>();
-            for (int i = 0; i < targetLetters.Length; i++)
-            {
-                dict.Add(targetLetters[i], allowedChars[i]);
-            }
-            
-            string targetString = "";
-            
-            for (int i = 0; i < target.Length; i++)
-            {
-                int charLoc = Functions.closestIndexFloat(target[i], targetLetters);
-                targetString += dict[targetLetters[charLoc]];
-            }
-            Console.WriteLine("\n\nBest Genome: " + targetString);
+            return target;
         }
-
     }
 
 }

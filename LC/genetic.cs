@@ -67,6 +67,10 @@ namespace _GeneticAlgorithm {
             return max;
         }
 
+        public float avgFitness() {
+            return this.calculateTotalFitness() / this.population_size;
+        }
+
         public Unit[] getTopXUnits(Unit[] sample, int x = 1) {
             return sample.OrderByDescending(u => u != null ? u.getFitness(true) : -1).Take(x).ToArray();
         }
@@ -113,9 +117,10 @@ namespace _GeneticAlgorithm {
 
                 if (print_) {
                     Console.WriteLine("Generation: " + generation);
-                    Console.WriteLine("Total Fitness: " + this.calculateTotalFitness());
+                    Console.WriteLine("Avg Fitness: " + this.avgFitness());
                     Console.WriteLine("Max Fitness: " + this.maxFitness().getFitness(true));
-                    this.maxFitness().displayGenome();
+                    string indexList = Functions.closestFloatListToMapping(this.maxFitness().getGenome(), this.linker.getMapping());
+                    Console.WriteLine("Current: " + indexList);
                     Console.WriteLine("");
                 }
                 generation++;
