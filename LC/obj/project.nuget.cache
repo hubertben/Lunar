@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6CIa1T/ZjrzFXBZPc/nmjELGPxrvvkxszLDjHQfH2xOfNzmpo8r5qrU1AVJajT1LDThTu/D3N6QSUgVL2klYqA==",
+  "dgSpecHash": "FvKVmmK+YoRBm8hM2pXNvf76KuuBS4b2ulX+7+LqHD305jdafTIDSpCUyR9K62k9k+OGHoZd41BwEqhujcy5Tg==",
   "success": true,
   "projectFilePath": "/Users/benhubert/Desktop/Lunar/LC/LC.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/benhubert/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

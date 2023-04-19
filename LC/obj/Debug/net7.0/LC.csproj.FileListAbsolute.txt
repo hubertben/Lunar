@@ -28,3 +28,5 @@ C:/Users/huber/Desktop/lunar/LC/obj/Debug/net7.0/ref/LC.dll
 /Users/benhubert/Desktop/Lunar/LC/obj/Debug/net7.0/LC.pdb
 /Users/benhubert/Desktop/Lunar/LC/obj/Debug/net7.0/LC.genruntimeconfig.cache
 /Users/benhubert/Desktop/Lunar/LC/obj/Debug/net7.0/ref/LC.dll
+/Users/benhubert/Desktop/Lunar/LC/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/benhubert/Desktop/Lunar/LC/obj/Debug/net7.0/LC.csproj.CopyComplete

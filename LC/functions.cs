@@ -70,6 +70,8 @@ namespace _Functions {
 
         public static float[] distListList(float[] list1, float[] list2){
             if (list1.Length != list2.Length) {
+                Functions.displayList(list1);
+                Functions.displayList(list2);
                 throw new Exception("Lists must be of equal length");
             }
 

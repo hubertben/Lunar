@@ -1,0 +1,7 @@
+{
+    "genome_length": 10,
+    "population_size": 1000,
+    "selection_size": 100,
+    "mutation_rate": 0.05,
+    "rounds": 200
+}
