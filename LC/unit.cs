@@ -1,5 +1,6 @@
 
 using _Functions;
+using _Linker;
 
 namespace _Unit {
 
@@ -8,10 +9,12 @@ namespace _Unit {
         private float[] genome;
         private float fitness = 0;
         private float mutation_rate;
+        private Linker linker;
 
-        public Unit(int genome_length, float mutation_rate, bool init = true) {
+        public Unit(int genome_length, Linker linker, float mutation_rate, bool init = true) {
             this.genome = new float[genome_length];
             this.mutation_rate = mutation_rate;
+            this.linker = linker;
 
             if (init) {
                 this.initRandomGenome();
@@ -35,7 +38,7 @@ namespace _Unit {
 
         public float getFitness(bool regenerate = false) {
             if (regenerate && this.fitness != -1) {
-                this.fitness = this.computeFitness(0);
+                this.fitness = this.computeFitness();
             }
             return this.fitness;
         }
@@ -64,7 +67,7 @@ namespace _Unit {
         }
 
         public Unit cross(Unit other, string _type = "rand"){
-            Unit child = new Unit(this.genome.Length, this.mutation_rate, false);
+            Unit child = new Unit(this.genome.Length, this.linker, this.mutation_rate, false);
             for (int i = 0; i < this.genome.Length; i++) {
                 float A = this.genome[i];
                 float B = other.getGenome()[i];
@@ -87,10 +90,8 @@ namespace _Unit {
             return child;
         }
 
-        public float computeFitness(float x){
-            float distance = Functions.sumList(Functions.distListFloat(this.genome, 0));
-            float fitness = 1 / ((distance + 1) + .0001f);
-            return fitness;
+        public float computeFitness(){
+            return this.linker.linkFitness(this.genome);
         }
 
         public void displayGenome() {

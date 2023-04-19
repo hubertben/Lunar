@@ -1,5 +1,6 @@
 
 using _Unit;
+using _Linker;
 using _Functions;
 
 namespace _GeneticAlgorithm {
@@ -9,13 +10,17 @@ namespace _GeneticAlgorithm {
         public int population_size;
         private Unit[] population;
         private int rounds;
-        private float mutation_rate = 0.5f;
+        private float mutation_rate = 0.05f;
+        private int genome_length;
+        private Linker linker;
 
 
-        public GeneticAlgorithm(int population_size, bool init = true) {
+        public GeneticAlgorithm(Linker linker, int population_size, int genome_length = 10, bool init = true) {
+            this.linker = linker;
             this.population_size = population_size;
             this.population = new Unit[population_size];
-
+            this.genome_length = genome_length;
+            
             if (init) {
                 this.initializePopulation();
             }
@@ -39,7 +44,7 @@ namespace _GeneticAlgorithm {
 
         public void initializePopulation() {
             for (int i = 0; i < this.population_size; i++) {
-                this.population[i] = new Unit(10, this.mutation_rate);
+                this.population[i] = new Unit(this.genome_length, this.linker, this.mutation_rate);
             }
         }
         public float calculateTotalFitness() {
@@ -62,7 +67,7 @@ namespace _GeneticAlgorithm {
             return max;
         }
 
-        public Unit[] getTopXUnits(Unit[] sample, int x = 10) {
+        public Unit[] getTopXUnits(Unit[] sample, int x = 1) {
             return sample.OrderByDescending(u => u != null ? u.getFitness(true) : -1).Take(x).ToArray();
         }
 
@@ -102,10 +107,15 @@ namespace _GeneticAlgorithm {
                 Unit[] top = this.selection(slots);
                 this.replacePopulation(top);
 
+                if (this.maxFitness().getFitness(true) == 1) {
+                    break;
+                }
+
                 if (print_) {
                     Console.WriteLine("Generation: " + generation);
                     Console.WriteLine("Total Fitness: " + this.calculateTotalFitness());
                     Console.WriteLine("Max Fitness: " + this.maxFitness().getFitness(true));
+                    this.maxFitness().displayGenome();
                     Console.WriteLine("");
                 }
                 generation++;
