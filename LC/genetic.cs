@@ -102,6 +102,11 @@ namespace _GeneticAlgorithm {
             }
         }
 
+        public void displayMaxMapping(){
+            string indexList = Functions.closestFloatListToMapping(this.maxFitness().getGenome(), this.linker.getMapping());
+            Console.WriteLine("Current: " + indexList);
+        }
+
         public Dictionary<object, object> simulate(int rounds = 50, int slots = 10, bool print_ = false) {
             Dictionary<object, object> stats = new Dictionary<object, object>();
             int generation = 0;
@@ -119,8 +124,7 @@ namespace _GeneticAlgorithm {
                     Console.WriteLine("Generation: " + generation);
                     Console.WriteLine("Avg Fitness: " + this.avgFitness());
                     Console.WriteLine("Max Fitness: " + this.maxFitness().getFitness(true));
-                    string indexList = Functions.closestFloatListToMapping(this.maxFitness().getGenome(), this.linker.getMapping());
-                    Console.WriteLine("Current: " + indexList);
+                    displayMaxMapping();
                     Console.WriteLine("");
                 }
                 generation++;

@@ -11,10 +11,10 @@ namespace LC
         static void Main(string[] args)
         {
 
-            string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .,-+=_!@#$%^&*()";
+            string allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 .,-+=_!@#$%^&*()";
             Dictionary<string, float> mapping = Functions.mapCharsetNormal(allowedChars);
 
-            string sampleTarget = "DONT CAPITALIZE WHOLE PARAGRAPHS. THIS HABIT ORIGINATED WITH LAWYERS AND HAS INFECTED SOCIETY AT LARGE. MANY WRITERS SEEM TO THINK";
+            string sampleTarget = "This is - sample text. @@@ (2 + 2) = 4)!";
             float[] linkerTarget = Functions.applyMappingToString(mapping, sampleTarget);
            
             Dictionary<string, Object> linkerData = new Dictionary<string, Object>();
@@ -24,15 +24,16 @@ namespace LC
 
             int genome_length = linkerTarget.Length;
             int population_size = 1250;
-            int rounds = 2000;
-            int selection_size = 100;
+            int rounds = 200;
+            int selection_size = 50;
             bool verbose = true;
 
             Linker L = new Linker(linkerData);
             
             GeneticAlgorithm GA = new GeneticAlgorithm(L, population_size, genome_length);
             GA.simulate(rounds, selection_size, verbose);
-            
+
+            GA.displayMaxMapping();
         }
 
         // static void keyboardInput()
