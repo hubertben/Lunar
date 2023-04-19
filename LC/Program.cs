@@ -29,13 +29,13 @@ namespace LC
             // int selection_size = 50;
             // bool verbose = true;
 
-            ParamsLoader PL = new ParamsLoader("params/params.json");
+            ParamsLoader PL = new ParamsLoader("Genetic Algorithm/params/params.json");
 
-            // int genome_length = Convert.ToInt32(PL.getItem("genome_length"));
-            int population_size = Convert.ToInt32(PL.getItem("population_size"));
-            int rounds = Convert.ToInt32(PL.getItem("rounds"));
-            int selection_size = Convert.ToInt32(PL.getItem("selection_size"));
-            float mutation_rate = Convert.ToSingle(PL.getItem("mutation_rate"));
+            // int genome_length = PL.getItem<int>("genome_length");
+            int population_size = PL.getItem<int>("population_size");
+            int rounds = PL.getItem<int>("rounds");
+            int selection_size = PL.getItem<int>("selection_size");
+            float mutation_rate = PL.getItem<float>("mutation_rate");
             bool verbose = true;
 
             Linker L = new Linker(linkerData);

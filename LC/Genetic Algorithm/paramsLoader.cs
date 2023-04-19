@@ -17,12 +17,18 @@ namespace _ParamsLoader {
             this.params_ = data;
         }
 
-        public string getType(Object obj) {
-            return obj.GetType().ToString();
-        }
-
-        public Object getItem(string name){
-            return this.params_[name];
+        public T getItem<T>(string key)
+{
+            if (!this.params_.ContainsKey(key))
+            {
+                throw new ArgumentException("Key not found in dictionary.");
+            }
+            object value = this.params_[key];
+            if (value == null)
+            {
+                return default(T);
+            }
+            return (T)Convert.ChangeType(value, typeof(T));
         }
 
     }
