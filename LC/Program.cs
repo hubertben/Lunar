@@ -10,7 +10,7 @@ namespace LC
             Console.WriteLine("");
             var GA = new GeneticAlgorithm(1000);
 
-            GA.simulate(500, 100);
+            GA.simulate(5000, 50, true);
 
             GA.maxFitness().displayGenome();
 

@@ -35,7 +35,7 @@ namespace _Unit {
 
         public float getFitness(bool regenerate = false) {
             if (regenerate && this.fitness != -1) {
-                this.fitness = this._fitness();
+                this.fitness = this.computeFitness(0);
             }
             return this.fitness;
         }
@@ -87,12 +87,10 @@ namespace _Unit {
             return child;
         }
 
-        public float _fitness(){
-            float sum = 0;
-            for (int i = 0; i < this.genome.Length; i++) {
-                sum += this.genome[i];
-            }
-            return Functions.map(sum, 0, this.genome.Length, 0, 1);
+        public float computeFitness(float x){
+            float distance = Functions.sumList(Functions.distListFloat(this.genome, 0));
+            float fitness = 1 / ((distance + 1) + .0001f);
+            return fitness;
         }
 
         public void displayGenome() {
