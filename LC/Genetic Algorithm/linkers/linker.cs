@@ -44,6 +44,7 @@ namespace _Linker {
 
             //////////////////////////////////////////////////////////////////////////////
 
+            // return 1 - (float)Math.Pow(Functions.sumList(Functions.distListList(genome, this.target)) , 2);
             return 1 - Functions.sumList(Functions.distListList(genome, this.target));
         }
 

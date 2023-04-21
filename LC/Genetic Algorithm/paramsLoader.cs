@@ -1,5 +1,6 @@
 
 using Newtonsoft.Json;
+using _Functions;
 
 namespace _ParamsLoader {
 
@@ -17,18 +18,8 @@ namespace _ParamsLoader {
             this.params_ = data;
         }
 
-        public T getItem<T>(string key)
-{
-            if (!this.params_.ContainsKey(key))
-            {
-                throw new ArgumentException("Key not found in dictionary.");
-            }
-            object value = this.params_[key];
-            if (value == null)
-            {
-                return default(T);
-            }
-            return (T)Convert.ChangeType(value, typeof(T));
+        public T getItem<T>(string key){
+            return Functions.getItem<T>(key, this.params_);
         }
 
     }

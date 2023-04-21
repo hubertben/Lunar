@@ -199,6 +199,21 @@ namespace _Functions {
             }
             return target;
         }
+
+        public static T getItem<T>(string key, Dictionary<string, object> dict)
+        {
+            if (!dict.ContainsKey(key))
+            {
+                throw new ArgumentException("Key not found in dictionary.");
+            }
+            object value = dict[key];
+            if (value == null)
+            {
+                return default(T);
+            }
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
+        
     }
 
 }
