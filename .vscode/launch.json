@@ -9,7 +9,7 @@
             "program": "${workspaceFolder}/LC/bin/Debug/net7.0/LC.dll",
             "args": [],
             "cwd": "${workspaceFolder}/LC",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false
         },
         {

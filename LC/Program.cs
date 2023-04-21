@@ -4,6 +4,8 @@ using _Linker;
 using _Functions;
 using _ParamsLoader;
 
+using _Lexer;
+
 namespace LC
 {
     class Program
@@ -43,27 +45,37 @@ namespace LC
 
         static void Main(string[] args)
         {
-            test1();
+            keyboardInput();
         }
 
-        // static void keyboardInput()
-        // {
-        //     while (true)
-        //     {
+        static void keyboardInput()
+        {
+            while (true)
+            {
 
-        //         var line = Console.ReadLine();
+                Console.Write(">>> ");
+                var line = Console.ReadLine();
 
-        //         if (line == "exit")
-        //         {
-        //             break;
-        //         }
-        //         else
-        //         {
-        //             Console.WriteLine(">>> " + line);
-        //         }
+                if (line == "exit")
+                {
+                    break;
+                }
+                else
+                {
+                    Lexer L = new Lexer(line);
+                    while (true)
+                    {
+                        Lexer.Token t = L.getNextToken();
+                        if (t.type == Lexer.Types.EOF || t.type == Lexer.Types.UNKNOWN)
+                        {
+                            break;
+                        }
+                        Console.WriteLine(t.__repr__());
+                    }
+                }
 
-        //     }
-        // }
+            }
+        }
 
     }
 }
