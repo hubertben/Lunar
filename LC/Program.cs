@@ -5,6 +5,7 @@ using _Functions;
 using _ParamsLoader;
 
 using _Lexer;
+using _Parser;
 
 namespace LC
 {
@@ -45,7 +46,11 @@ namespace LC
 
         static void Main(string[] args)
         {
-            keyboardInput();
+            Parser p = new Parser("1 + 2 + 3");
+            var exp = p.parseExpression();
+            Parser.printAST(exp);
+            
+            // keyboardInput();
         }
 
         static void keyboardInput()
